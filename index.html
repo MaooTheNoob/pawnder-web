@@ -50,6 +50,60 @@
       font-size: 0.85rem;
       margin-bottom: 32px;
     }
+    .delete-banner {
+      background: #FFF3F0;
+      border: 2px solid #FF6B35;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .delete-banner h2 {
+      color: #d94f1e;
+      border-bottom: none;
+      margin: 0 0 4px;
+      font-size: 1.3rem;
+    }
+    .delete-banner p { margin: 0; }
+    .delete-banner ol { margin: 8px 0 0 24px; }
+    .delete-banner li { margin-bottom: 6px; }
+    .delete-banner .note {
+      background: #fff;
+      border-left: 4px solid #FF6B35;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .delete-btn {
+      display: inline-block;
+      margin-top: 4px;
+      background: #FF6B35;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      align-self: flex-start;
+    }
+    .delete-btn:hover { background: #d94f1e; text-decoration: none; }
+    .quick-nav {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .quick-nav a {
+      display: inline-block;
+      background: #FF6B35;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .quick-nav a:hover { background: #d94f1e; text-decoration: none; }
     footer {
       text-align: center;
       padding: 32px 24px;
@@ -66,7 +120,32 @@
 </header>
 
 <main>
-  <p class="updated">Dernière mise à jour : 10 mai 2026</p>
+  <p class="updated">Dernière mise à jour : 17 mai 2026</p>
+
+  <div class="quick-nav">
+    <a href="#supprimer-compte">🗑️ Supprimer mon compte</a>
+  </div>
+
+  <!-- ===== SECTION SUPPRESSION DE COMPTE ===== -->
+  <div class="delete-banner" id="supprimer-compte">
+    <h2>🗑️ Supprimer mon compte</h2>
+    <p>Vous pouvez supprimer votre compte Pawnder à tout moment, directement depuis l'application :</p>
+    <ol>
+      <li>Ouvrez l'application <strong>Pawnder</strong></li>
+      <li>Allez dans <strong>Profil</strong> (icône en bas à droite)</li>
+      <li>Faites défiler jusqu'en bas et appuyez sur <strong>« Supprimer mon compte »</strong></li>
+      <li>Confirmez la suppression dans la boîte de dialogue</li>
+    </ol>
+    <div class="note">
+      La suppression est <strong>définitive et irréversible</strong>. Toutes vos données personnelles
+      (profil, animaux, photos, messages, matchs) seront effacées dans un délai de <strong>30 jours</strong>,
+      à l'exception des données requises par la loi.
+    </div>
+    <p>Si vous ne pouvez pas accéder à l'application, envoyez une demande de suppression par e-mail :</p>
+    <a class="delete-btn" href="mailto:pawnder.appli@gmail.com?subject=Demande%20de%20suppression%20de%20compte&body=Bonjour%2C%0A%0AJe%20souhaite%20supprimer%20mon%20compte%20Pawnder.%0A%0AAdresse%20e-mail%20du%20compte%20%3A%20">
+      📧 Demander la suppression par e-mail
+    </a>
+  </div>
 
   <div class="card">
 
@@ -125,9 +204,11 @@
 
     <h2>7. Suppression de compte</h2>
     <p>
-      Vous pouvez supprimer votre compte directement depuis l'application, dans les paramètres
-      de votre profil. La suppression est définitive et entraîne l'effacement de toutes vos
-      données personnelles dans un délai de 30 jours, à l'exception des données requises par la loi.
+      Vous pouvez supprimer votre compte directement depuis l'application (<strong>Profil → Supprimer mon compte</strong>)
+      ou en contactant <a href="mailto:pawnder.appli@gmail.com">pawnder.appli@gmail.com</a>.
+      La suppression est définitive et entraîne l'effacement de toutes vos données personnelles
+      dans un délai de 30 jours, à l'exception des données requises par la loi.
+      <a href="#supprimer-compte">→ Voir les instructions détaillées</a>
     </p>
 
     <h2>8. Conservation des données</h2>
