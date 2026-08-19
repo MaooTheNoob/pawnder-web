@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annonce Pawnder — Animal perdu/trouvé</title>
+
+  <!-- Aperçu riche dans WhatsApp / réseaux sociaux -->
+  <meta property="og:title" content="🚨 Un animal a besoin de vous près de chez vous !" />
+  <meta property="og:description" content="Un membre Pawnder a signalé un animal perdu ou trouvé. Ouvrez l'annonce dans l'app pour aider à le retrouver." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pawnder" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fdf6f0;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      max-width: 420px;
+      width: 100%;
+      padding: 40px 28px 32px;
+      text-align: center;
+    }
+    .emoji { font-size: 64px; }
+    h1 { font-size: 1.5rem; font-weight: 800; margin: 16px 0 8px; color: #FF6B35; }
+    p  { font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 24px; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: transform 0.1s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: #FF6B35; color: #fff; }
+    .btn-store   { background: #222; color: #fff; }
+    .hint { font-size: 0.8rem; color: #aaa; margin-top: 16px; }
+    .brand { margin-top: 24px; font-weight: 800; color: #FF6B35; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="emoji">🐾</div>
+    <h1>Un animal a besoin de vous !</h1>
+    <p>Un membre Pawnder a signalé un animal <strong>perdu ou trouvé</strong> près de chez vous.
+       Ouvrez l'annonce dans l'application pour voir ses photos et aider à le retrouver.</p>
+
+    <a class="btn btn-primary" id="openApp" href="#">📱 Ouvrir l'annonce dans l'app</a>
+    <a class="btn btn-store" id="playStore"
+       href="https://play.google.com/store/apps/details?id=com.pawnder.pawnder">
+       ▶ Télécharger sur Google Play</a>
+    <a class="btn btn-store" id="appStore"
+       href="https://apps.apple.com/app/idAPPLE_ID_A_REMPLACER">
+        Télécharger sur l'App Store</a>
+
+    <div class="hint">Si l'app est déjà installée, l'annonce s'ouvrira directement.</div>
+    <div class="brand">Pawnder — le réseau social de vos animaux</div>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var id = (params.get('id') || '').replace(/[^A-Za-z0-9_-]/g, '');
+      var deepLink = id ? 'pawnder://lost/' + id : 'pawnder://open';
+      var ua = navigator.userAgent || '';
+      var isAndroid = /android/i.test(ua);
+      var isIOS = /iphone|ipad|ipod/i.test(ua);
+
+      // Sur Android, intent:// bascule automatiquement vers le Play Store
+      // si l'app n'est pas installée.
+      var androidIntent = 'intent://lost/' + id +
+        '#Intent;scheme=pawnder;package=com.pawnder.pawnder;' +
+        'S.browser_fallback_url=' +
+        encodeURIComponent('https://play.google.com/store/apps/details?id=com.pawnder.pawnder') +
+        ';end';
+
+      var openBtn = document.getElementById('openApp');
+      openBtn.href = isAndroid ? androidIntent : deepLink;
+
+      // Masquer le bouton du store qui ne correspond pas à l'appareil
+      if (isAndroid) document.getElementById('appStore').style.display = 'none';
+      if (isIOS)     document.getElementById('playStore').style.display = 'none';
+
+      // Tentative automatique d'ouverture de l'app (best effort)
+      if (id && (isAndroid || isIOS)) {
+        setTimeout(function () {
+          window.location.href = isAndroid ? androidIntent : deepLink;
+        }, 600);
+      }
+    })();
+  </script>
+</body>
+</html>
